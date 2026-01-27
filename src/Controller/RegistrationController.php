@@ -15,6 +15,10 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_dashboard');
+        }
+
         if ($request->isMethod('POST')) {
             if (!$this->isCsrfTokenValid('register', (string) $request->request->get('_csrf_token'))) {
                 $this->addFlash('error', 'Jeton CSRF invalide.');

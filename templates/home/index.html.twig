@@ -9,8 +9,13 @@
             <h1>EcoTrack</h1>
             <p>Mesurez, suivez et reduisez votre empreinte carbone avec des actions concretes.</p>
             <div class="hero-actions">
-                <a class="button" href="{{ path('app_register') }}">Commencer</a>
-                <a class="button ghost" href="{{ path('app_dashboard') }}">Voir le tableau de bord</a>
+                {% if app.user %}
+                    <a class="button" href="{{ path('app_record_new') }}">Nouvel enregistrement</a>
+                    <a class="button ghost" href="{{ path('app_dashboard') }}">Voir le tableau de bord</a>
+                {% else %}
+                    <a class="button" href="{{ path('app_register') }}">Commencer</a>
+                    <a class="button ghost" href="{{ path('app_dashboard') }}">Voir le tableau de bord</a>
+                {% endif %}
             </div>
         </div>
         <div class="hero-card">
