@@ -10,9 +10,15 @@ services:
       APP_LOG_DIR: /tmp/symfony/log
     volumes:
       - ./:/var/www/html:rw,cached
+      - app_vendor:/var/www/html/vendor
+      - app_var:/var/www/html/var
 
   nginx:
     image: nginx:1.27-alpine
     volumes:
       - ./:/var/www/html:ro
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  app_vendor:
+  app_var:
