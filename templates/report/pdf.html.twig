@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: DejaVu Sans, Arial, sans-serif; color: #1f2a24; }
+        h1, h2 { color: #0b3d2e; }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { padding: 8px; border-bottom: 1px solid #d7e2dc; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>EcoTrack – Rapport d'impact</h1>
+
+    <h2>Synthèse mensuelle</h2>
+    <p>Total du mois : {{ summary.monthly_total|number_format(2, '.', ' ') }} kg CO2e</p>
+
+    <h2>Répartition par catégorie</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Catégorie</th>
+                <th>Total (kg CO2e)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in summary.category_totals %}
+                <tr>
+                    <td>{{ item.category|capitalize }}</td>
+                    <td>{{ item.total|number_format(2, '.', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucune donnée pour ce mois.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Tendance 6 derniers mois</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mois</th>
+                <th>Total (kg CO2e)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in summary.monthly_trend %}
+                <tr>
+                    <td>{{ item.month }}</td>
+                    <td>{{ item.total|number_format(2, '.', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Pas assez de données pour la tendance.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Actions en cours</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for action in actions %}
+                <tr>
+                    <td>{{ action.ecoAction.title }}</td>
+                    <td>{{ action.status }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucune action active.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Creer un compte</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    <form method="post" class="form-grid">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}">
+
+        <label for="full_name">Nom complet</label>
+        <input type="text" id="full_name" name="full_name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">S'inscrire</button>
+    </form>
+</div>
+{% endblock %}

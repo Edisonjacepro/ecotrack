@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="container">
+    <header class="page-header">
+        <h1>Tableau de bord carbone</h1>
+        <p>Suivi mensuel et actions en cours.</p>
+        <a class="button" href="{{ path('app_report_pdf') }}">Exporter le rapport PDF</a>
+    </header>
+
+    <section class="metrics">
+        <div class="metric">
+            <h2>Total du mois</h2>
+            <p class="metric-value">{{ monthly_total|number_format(2, '.', ' ') }} kg CO2e</p>
+        </div>
+        <div class="metric">
+            <h2>Repartition par categorie</h2>
+            {% if category_totals is not empty %}
+                <ul>
+                    {% for item in category_totals %}
+                        <li>{{ item.category|capitalize }} : {{ item.total|number_format(2, '.', ' ') }} kg</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucune donnee enregistree ce mois-ci.</p>
+            {% endif %}
+        </div>
+        <div class="metric">
+            <h2>Recommandations</h2>
+            {% if recommended_actions is not empty %}
+                <ul>
+                    {% for action in recommended_actions %}
+                        <li>{{ action.title }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Ajoutez des donnees pour recevoir des recommandations.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="metrics">
+        <div class="metric">
+            <h2>Tendance 6 derniers mois</h2>
+            {% if monthly_trend is not empty %}
+                <ul>
+                    {% for item in monthly_trend %}
+                        <li>{{ item.month }} : {{ item.total|number_format(2, '.', ' ') }} kg</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Pas encore de tendance disponible.</p>
+            {% endif %}
+        </div>
+        <div class="metric">
+            <h2>Actions en cours</h2>
+            {% if active_actions is not empty %}
+                <ul>
+                    {% for item in active_actions %}
+                        <li>{{ item.ecoAction.title }} — {{ item.status }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucune action active pour le moment.</p>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

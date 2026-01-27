@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel enregistrement{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Ajouter un enregistrement carbone</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    <form method="post" class="form-grid">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('carbon_record') }}">
+        <label for="category">Categorie</label>
+        <select id="category" name="category" required>
+            <option value="transport">Transport</option>
+            <option value="energy">Energie</option>
+            <option value="food">Alimentation</option>
+            <option value="digital">Numerique</option>
+        </select>
+
+        <label for="distance_km">Distance (km)</label>
+        <input type="number" id="distance_km" name="distance_km" step="0.1">
+
+        <label for="mode">Mode transport</label>
+        <select id="mode" name="mode">
+            <option value="car">Voiture</option>
+            <option value="bus">Bus</option>
+            <option value="train">Train</option>
+            <option value="plane">Avion</option>
+            <option value="bike">Velo</option>
+            <option value="walk">Marche</option>
+        </select>
+
+        <label for="kwh">Energie (kWh)</label>
+        <input type="number" id="kwh" name="kwh" step="0.1">
+
+        <label for="energy_type">Type energie</label>
+        <select id="energy_type" name="energy_type">
+            <option value="electricity">Electricite</option>
+            <option value="gas">Gaz</option>
+        </select>
+
+        <label for="meals">Nombre de repas</label>
+        <input type="number" id="meals" name="meals" step="1">
+
+        <label for="meal_type">Type de repas</label>
+        <select id="meal_type" name="meal_type">
+            <option value="meat">Avec viande</option>
+            <option value="vegetarian">Vegetarien</option>
+            <option value="vegan">Vegan</option>
+        </select>
+
+        <label for="hours">Duree (heures)</label>
+        <input type="number" id="hours" name="hours" step="0.1">
+
+        <label for="activity">Activite numerique</label>
+        <select id="activity" name="activity">
+            <option value="streaming_hour">Streaming</option>
+            <option value="browsing_hour">Navigation web</option>
+        </select>
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+</div>
+{% endblock %}

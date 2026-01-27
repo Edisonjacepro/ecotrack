@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container">
+    <section class="hero">
+        <div>
+            <h1>EcoTrack</h1>
+            <p>Mesurez, suivez et reduisez votre empreinte carbone avec des actions concretes.</p>
+            <div class="hero-actions">
+                <a class="button" href="{{ path('app_register') }}">Commencer</a>
+                <a class="button ghost" href="{{ path('app_dashboard') }}">Voir le tableau de bord</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <h2>Fonctionnalites</h2>
+            <ul>
+                <li>Calcul des emissions par categorie</li>
+                <li>Tableau de bord et tendances</li>
+                <li>Recommandations d'actions</li>
+                <li>Export PDF</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="metrics">
+        <div class="metric">
+            <h2>Transport</h2>
+            <p>Suivez vos deplacements et identifiez les gains rapides.</p>
+        </div>
+        <div class="metric">
+            <h2>Energie</h2>
+            <p>Mesurez l'impact de votre consommation d'energie.</p>
+        </div>
+        <div class="metric">
+            <h2>Alimentation</h2>
+            <p>Comparez vos repas et optimisez vos choix.</p>
+        </div>
+    </section>
+</div>
+{% endblock %}
