@@ -14,12 +14,12 @@
     </head>
     <body>
         <header class="topbar">
-            <div class="brand">EcoTrack</div>
+            <a class="brand" href="{{ path('app_home') }}">EcoTrack</a>
             <nav>
                 <a href="{{ path('app_home') }}">Accueil</a>
-                <a href="{{ path('app_dashboard') }}">Tableau</a>
-                <a href="{{ path('app_record_new') }}">Nouvel enregistrement</a>
                 {% if app.user %}
+                    <a href="{{ path('app_dashboard') }}">Tableau</a>
+                    <a href="{{ path('app_record_new') }}">Nouvel enregistrement</a>
                     <a href="{{ path('app_logout') }}">Deconnexion</a>
                 {% else %}
                     <a href="{{ path('app_login') }}">Connexion</a>
