@@ -1,5 +1,5 @@
 import { startStimulusApp } from '@symfony/stimulus-bundle';
+import CarbonFormController from './controllers/carbon_form_controller.js';
 
 const app = startStimulusApp();
-// register any custom, 3rd party controllers here
-// app.register('some_controller_name', SomeImportedController);
+app.register('carbon-form', CarbonFormController);

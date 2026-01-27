@@ -163,6 +163,25 @@ button:hover {
     max-width: 640px;
 }
 
+.helper {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.section-title {
+    margin-top: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+
+.form-section.is-hidden {
+    display: none;
+}
+
 label {
     font-weight: 600;
 }
