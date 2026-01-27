@@ -31,6 +31,7 @@ class DashboardController extends AbstractController
         $activeActions = $userEcoActionRepository->findActiveForUser($user, 5);
 
         $topCategory = $categoryTotals[0]['category'] ?? null;
+        $topCategoryTotal = $categoryTotals[0]['total'] ?? null;
         $recommendedActions = $topCategory ? $recommendationService->recommend($topCategory, 4) : [];
 
         return $this->render('dashboard/index.html.twig', [
@@ -38,6 +39,9 @@ class DashboardController extends AbstractController
             'category_totals' => $categoryTotals,
             'monthly_trend' => $monthlyTrend,
             'active_actions' => $activeActions,
+            'active_actions_count' => count($activeActions),
+            'top_category' => $topCategory,
+            'top_category_total' => $topCategoryTotal,
             'recommended_actions' => $recommendedActions,
         ]);
     }

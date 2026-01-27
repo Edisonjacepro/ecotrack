@@ -137,6 +137,44 @@ main {
     margin: 12px 0 0;
 }
 
+.recommendations {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.recommendation-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #f7fbf8;
+}
+
+.recommendation-card h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.recommendation-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.tag {
+    background: rgba(31, 111, 92, 0.12);
+    color: var(--accent);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
 .button,
 button {
     display: inline-flex;

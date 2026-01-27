@@ -29,14 +29,34 @@
         </div>
         <div class="metric">
             <h2>Recommandations</h2>
-            {% if recommended_actions is not empty %}
-                <ul>
-                    {% for action in recommended_actions %}
-                        <li>{{ action.title }}</li>
-                    {% endfor %}
-                </ul>
+            {% if top_category %}
+                <p class="helper">Poste prioritaire : <strong>{{ top_category|capitalize }}</strong>
+                    {% if top_category_total is not null %}
+                        ({{ top_category_total|number_format(2, '.', ' ') }} kg CO2e ce mois-ci)
+                    {% endif %}
+                </p>
             {% else %}
-                <p>Ajoutez des donnees pour recevoir des recommandations.</p>
+                <p class="helper">Ajoutez des donnees pour identifier votre poste prioritaire.</p>
+            {% endif %}
+
+            {% if recommended_actions is not empty %}
+                <div class="recommendations">
+                    {% for action in recommended_actions %}
+                        <article class="recommendation-card">
+                            <div>
+                                <h3>{{ action.title }}</h3>
+                                <p>{{ action.description }}</p>
+                            </div>
+                            <div class="tag">Gain estime : {{ action.estimatedSavingKg|number_format(1, '.', ' ') }} kg</div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Aucune recommandation disponible pour le moment.</p>
+            {% endif %}
+
+            {% if active_actions_count > 0 %}
+                <p class="helper">Actions en cours : {{ active_actions_count }}</p>
             {% endif %}
         </div>
     </section>
@@ -59,7 +79,7 @@
             {% if active_actions is not empty %}
                 <ul>
                     {% for item in active_actions %}
-                        <li>{{ item.ecoAction.title }} — {{ item.status }}</li>
+                        <li>{{ item.ecoAction.title }} - {{ item.status }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
