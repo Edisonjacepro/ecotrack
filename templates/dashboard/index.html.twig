@@ -47,7 +47,13 @@
                                 <h3>{{ action.title }}</h3>
                                 <p>{{ action.description }}</p>
                             </div>
-                            <div class="tag">Gain estime : {{ action.estimatedSavingKg|number_format(1, '.', ' ') }} kg</div>
+                            <div class="recommendation-actions">
+                                <div class="tag">Gain estime : {{ action.estimatedSavingKg|number_format(1, '.', ' ') }} kg</div>
+                                <form method="post" action="{{ path('app_action_add', { id: action.id }) }}">
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('add_action_' ~ action.id) }}">
+                                    <button type="submit" class="button small">Ajouter</button>
+                                </form>
+                            </div>
                         </article>
                     {% endfor %}
                 </div>
@@ -75,7 +81,10 @@
             {% endif %}
         </div>
         <div class="metric">
-            <h2>Actions en cours</h2>
+            <div class="action-header">
+                <h2>Actions en cours</h2>
+                <a class="button small" href="{{ path('app_user_actions') }}">Voir toutes</a>
+            </div>
             {% if active_actions is not empty %}
                 <ul>
                     {% for item in active_actions %}
