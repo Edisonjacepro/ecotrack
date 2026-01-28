@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Methodologie carbone{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="page-header">
+        <h1>Comment est calcule votre bilan carbone</h1>
+        <p>Notre methode est simple, transparente et basee sur des facteurs d'emission reconnus.</p>
+    </div>
+
+    <section class="metrics">
+        <div class="metric">
+            <h2>1. Vous decrivez vos activites</h2>
+            <p>Nous collectons des donnees claires : kilometres parcourus, kWh consommes, types de repas, usage numerique.</p>
+        </div>
+        <div class="metric">
+            <h2>2. Nous appliquons un facteur d'emission</h2>
+            <p>Chaque activite est associee a un facteur d'emission (kgCO2e/unite) issu de bases publiques.</p>
+        </div>
+        <div class="metric">
+            <h2>3. Nous additionnons par categorie</h2>
+            <p>Les emissions sont totalisees par categorie et sur la periode choisie pour obtenir votre total.</p>
+        </div>
+    </section>
+
+    <section class="hero-card">
+        <h2>La formule utilisee</h2>
+        <p><strong>Emissions = Activite x Facteur d'emission</strong></p>
+        <p>Exemple : 120 km en voiture x 0,19 kgCO2e/km = 22,8 kgCO2e.</p>
+        <p>Les resultats sont exprimes en <strong>kgCO2e</strong> (CO2 equivalent) pour inclure les principaux gaz a effet de serre.</p>
+    </section>
+
+    <section class="recommendations">
+        <div class="recommendation-card">
+            <div>
+                <h3>Pourquoi ces resultats peuvent varier ?</h3>
+                <p>Les facteurs sont des moyennes. Selon le vehicule, le logement ou les habitudes, le resultat peut evoluer.</p>
+            </div>
+            <span class="tag">Transparence</span>
+        </div>
+        <div class="recommendation-card">
+            <div>
+                <h3>Vos donnees restent privees</h3>
+                <p>Nous affichons uniquement vos propres donnees. Vous pouvez exporter vos rapports quand vous le souhaitez.</p>
+            </div>
+            <span class="tag">Confiance</span>
+        </div>
+        <div class="recommendation-card">
+            <div>
+                <h3>Des actions concretes</h3>
+                <p>Le tableau de bord met en avant la categorie la plus emettrice et des actions a fort impact.</p>
+            </div>
+            <span class="tag">Impact</span>
+        </div>
+    </section>
+</div>
+{% endblock %}

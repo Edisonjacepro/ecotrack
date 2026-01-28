@@ -13,4 +13,10 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
+
+    #[Route('/methodologie', name: 'app_methodology')]
+    public function methodology(): Response
+    {
+        return $this->render('home/methodology.html.twig');
+    }
 }
