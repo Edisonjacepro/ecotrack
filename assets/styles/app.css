@@ -23,9 +23,6 @@ body {
 }
 
 .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 20px 40px;
     background: rgba(255, 255, 255, 0.85);
     border-bottom: 1px solid var(--border);
@@ -43,15 +40,25 @@ body {
     text-decoration: none;
 }
 
-nav a {
-    margin-left: 16px;
-    text-decoration: none;
+.navbar-nav .nav-link {
     color: var(--ink);
     font-weight: 500;
+    white-space: nowrap;
 }
 
-nav a:hover {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
     color: var(--accent);
+}
+
+.navbar-toggler {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 10px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 2px rgba(31, 111, 92, 0.2);
 }
 
 main {
@@ -159,6 +166,7 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .recommendation-actions {
@@ -220,6 +228,7 @@ button:hover {
     display: grid;
     gap: 12px;
     max-width: 640px;
+    width: 100%;
 }
 
 .helper {
@@ -264,18 +273,57 @@ textarea {
 }
 
 @media (max-width: 768px) {
-    .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+    main {
+        padding: 24px;
     }
 
-    nav a {
-        margin-left: 0;
-        margin-right: 12px;
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .recommendation-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .recommendation-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .button,
+    button {
+        width: 100%;
+    }
+
+    .hero-actions .button,
+    .hero-actions button,
+    .recommendation-actions .button {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .topbar {
+        padding: 16px 20px;
     }
 
     main {
-        padding: 24px;
+        padding: 20px;
+    }
+
+    .metric {
+        padding: 16px;
+    }
+
+    .recommendation-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
