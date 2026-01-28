@@ -22,12 +22,12 @@
 
         <label for="status">Statut</label>
         <select id="status" name="status">
-            <option value="planned" {% if action.status == 'planned' %}selected{% endif %}>Plannee</option>
+            <option value="planned" {% if action.status == 'planned' %}selected{% endif %}>Planifi&eacute;e</option>
             <option value="in_progress" {% if action.status == 'in_progress' %}selected{% endif %}>En cours</option>
-            <option value="done" {% if action.status == 'done' %}selected{% endif %}>Terminee</option>
+            <option value="done" {% if action.status == 'done' %}selected{% endif %}>Termin&eacute;e</option>
         </select>
 
-        <label for="started_at">Date de debut</label>
+        <label for="started_at">Date de d&eacute;but</label>
         <input type="date" id="started_at" name="started_at" value="{{ action.startedAt ? action.startedAt|date('Y-m-d') : '' }}">
 
         <label for="completed_at">Date de fin</label>
@@ -36,7 +36,7 @@
         <label for="notes">Notes</label>
         <textarea id="notes" name="notes" rows="3">{{ action.notes }}</textarea>
 
-        <button type="submit">Mettre a jour</button>
+        <button type="submit">Mettre &agrave; jour</button>
     </form>
 </div>
 {% endblock %}

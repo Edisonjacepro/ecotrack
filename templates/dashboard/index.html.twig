@@ -16,7 +16,7 @@
             <p class="metric-value">{{ monthly_total|number_format(2, '.', ' ') }} kg CO2e</p>
         </div>
         <div class="metric">
-            <h2>Repartition par categorie</h2>
+            <h2>R&eacute;partition par cat&eacute;gorie</h2>
             {% if category_totals is not empty %}
                 <ul>
                     {% for item in category_totals %}
@@ -24,7 +24,7 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>Aucune donnee enregistree ce mois-ci.</p>
+                <p>Aucune donn&eacute;e enregistr&eacute;e ce mois-ci.</p>
             {% endif %}
         </div>
         <div class="metric">
@@ -36,7 +36,7 @@
                     {% endif %}
                 </p>
             {% else %}
-                <p class="helper">Ajoutez des donnees pour identifier votre poste prioritaire.</p>
+                <p class="helper">Ajoutez des donn&eacute;es pour identifier votre poste prioritaire.</p>
             {% endif %}
 
             {% if recommended_actions is not empty %}
@@ -48,7 +48,7 @@
                                 <p>{{ action.description }}</p>
                             </div>
                             <div class="recommendation-actions">
-                                <div class="tag">Gain estime : {{ action.estimatedSavingKg|number_format(1, '.', ' ') }} kg</div>
+                                <div class="tag">Gain estim&eacute; : {{ action.estimatedSavingKg|number_format(1, '.', ' ') }} kg</div>
                                 <form method="post" action="{{ path('app_action_add', { id: action.id }) }}">
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('add_action_' ~ action.id) }}">
                                     <button type="submit" class="button small">Ajouter</button>

@@ -18,12 +18,12 @@
         <label for="recorded_at">Date</label>
         <input type="date" id="recorded_at" name="recorded_at" value="{{ record.recordedAt ? record.recordedAt|date('Y-m-d') : '' }}">
 
-        <label for="category">Categorie</label>
+        <label for="category">Cat&eacute;gorie</label>
         <select id="category" name="category" required data-carbon-form-target="category" data-action="change->carbon-form#toggle">
             <option value="transport" {% if record.category == 'transport' %}selected{% endif %}>Transport</option>
-            <option value="energy" {% if record.category == 'energy' %}selected{% endif %}>Energie</option>
+            <option value="energy" {% if record.category == 'energy' %}selected{% endif %}>&Eacute;nergie</option>
             <option value="food" {% if record.category == 'food' %}selected{% endif %}>Alimentation</option>
-            <option value="digital" {% if record.category == 'digital' %}selected{% endif %}>Numerique</option>
+            <option value="digital" {% if record.category == 'digital' %}selected{% endif %}>Num&eacute;rique</option>
         </select>
 
         <div class="form-section" data-carbon-form-target="section" data-category="transport">
@@ -38,20 +38,20 @@
                 <option value="bus" {% if mode == 'bus' %}selected{% endif %}>Bus</option>
                 <option value="train" {% if mode == 'train' %}selected{% endif %}>Train</option>
                 <option value="plane" {% if mode == 'plane' %}selected{% endif %}>Avion</option>
-                <option value="bike" {% if mode == 'bike' %}selected{% endif %}>Velo</option>
+                <option value="bike" {% if mode == 'bike' %}selected{% endif %}>V&eacute;lo</option>
                 <option value="walk" {% if mode == 'walk' %}selected{% endif %}>Marche</option>
             </select>
         </div>
 
         <div class="form-section" data-carbon-form-target="section" data-category="energy">
-            <div class="section-title">Energie</div>
-            <label for="kwh">Energie (kWh)</label>
+            <div class="section-title">&Eacute;nergie</div>
+            <label for="kwh">&Eacute;nergie (kWh)</label>
             <input type="number" id="kwh" name="kwh" step="0.1" value="{{ data.kwh ?? '' }}">
 
-            <label for="energy_type">Type energie</label>
+            <label for="energy_type">Type d&apos;&eacute;nergie</label>
             <select id="energy_type" name="energy_type">
                 {% set energyType = data.energy_type ?? 'electricity' %}
-                <option value="electricity" {% if energyType == 'electricity' %}selected{% endif %}>Electricite</option>
+                <option value="electricity" {% if energyType == 'electricity' %}selected{% endif %}>&Eacute;lectricit&eacute;</option>
                 <option value="gas" {% if energyType == 'gas' %}selected{% endif %}>Gaz</option>
             </select>
         </div>
@@ -65,17 +65,17 @@
             <select id="meal_type" name="meal_type">
                 {% set mealType = data.meal_type ?? 'meat' %}
                 <option value="meat" {% if mealType == 'meat' %}selected{% endif %}>Avec viande</option>
-                <option value="vegetarian" {% if mealType == 'vegetarian' %}selected{% endif %}>Vegetarien</option>
+                <option value="vegetarian" {% if mealType == 'vegetarian' %}selected{% endif %}>V&eacute;g&eacute;tarien</option>
                 <option value="vegan" {% if mealType == 'vegan' %}selected{% endif %}>Vegan</option>
             </select>
         </div>
 
         <div class="form-section" data-carbon-form-target="section" data-category="digital">
-            <div class="section-title">Numerique</div>
-            <label for="hours">Duree (heures)</label>
+            <div class="section-title">Num&eacute;rique</div>
+            <label for="hours">Dur&eacute;e (heures)</label>
             <input type="number" id="hours" name="hours" step="0.1" value="{{ data.hours ?? '' }}">
 
-            <label for="activity">Activite numerique</label>
+            <label for="activity">Activit&eacute; num&eacute;rique</label>
             <select id="activity" name="activity">
                 {% set activity = data.activity ?? 'streaming_hour' %}
                 <option value="streaming_hour" {% if activity == 'streaming_hour' %}selected{% endif %}>Streaming</option>
@@ -86,7 +86,7 @@
         <label for="notes">Notes</label>
         <textarea id="notes" name="notes" rows="3">{{ record.notes }}</textarea>
 
-        <button type="submit">Mettre a jour</button>
+        <button type="submit">Mettre &agrave; jour</button>
     </form>
 </div>
 {% endblock %}

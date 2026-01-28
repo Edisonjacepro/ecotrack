@@ -7,26 +7,26 @@
     <section class="hero">
         <div>
             <h1>EcoTrack</h1>
-            <p>Mesurez, suivez et reduisez votre empreinte carbone avec des actions concretes.</p>
+            <p>Transformez votre empreinte carbone en plan d'action clair. Mesurez, comprenez, r&eacute;duisez.</p>
             <div class="hero-actions">
                 {% if app.user %}
                     <a class="button" href="{{ path('app_record_new') }}">Nouvel enregistrement</a>
                     <a class="button ghost" href="{{ path('app_dashboard') }}">Voir le tableau de bord</a>
-                    <a class="button ghost" href="{{ path('app_methodology') }}">Methodologie</a>
+                    <a class="button ghost" href="{{ path('app_methodology') }}">M&eacute;thodologie</a>
                 {% else %}
                     <a class="button" href="{{ path('app_register') }}">Commencer</a>
                     <a class="button ghost" href="{{ path('app_dashboard') }}">Voir le tableau de bord</a>
-                    <a class="button ghost" href="{{ path('app_methodology') }}">Methodologie</a>
+                    <a class="button ghost" href="{{ path('app_methodology') }}">M&eacute;thodologie</a>
                 {% endif %}
             </div>
         </div>
         <div class="hero-card">
-            <h2>Fonctionnalites</h2>
+            <h2>Pourquoi EcoTrack</h2>
             <ul>
-                <li>Calcul des emissions par categorie</li>
-                <li>Tableau de bord et tendances</li>
-                <li>Recommandations d'actions</li>
-                <li>Export PDF</li>
+                <li>Des estimations bas&eacute;es sur des facteurs reconnus</li>
+                <li>Un tableau de bord simple &agrave; lire, utile &agrave; agir</li>
+                <li>Des recommandations concr&egrave;tes, pas des promesses</li>
+                <li>Un export clair pour partager vos progr&egrave;s</li>
             </ul>
         </div>
     </section>
@@ -34,15 +34,30 @@
     <section class="metrics">
         <div class="metric">
             <h2>Transport</h2>
-            <p>Suivez vos deplacements et identifiez les gains rapides.</p>
+            <p>Rep&eacute;rez les trajets qui comptent vraiment et les alternatives &agrave; fort impact.</p>
         </div>
         <div class="metric">
-            <h2>Energie</h2>
-            <p>Mesurez l'impact de votre consommation d'energie.</p>
+            <h2>&Eacute;nergie</h2>
+            <p>Comprenez ce que repr&eacute;sente votre consommation et o&ugrave; agir en priorit&eacute;.</p>
         </div>
         <div class="metric">
             <h2>Alimentation</h2>
-            <p>Comparez vos repas et optimisez vos choix.</p>
+            <p>Voyez l&apos;effet de vos repas et identifiez des gestes simples.</p>
+        </div>
+    </section>
+
+    <section class="trust">
+        <div class="hero-card">
+            <h2>Transparence, pas de greenwashing</h2>
+            <p>Les facteurs d&apos;&eacute;mission sont publics. Nous expliquons chaque calcul pour que vous puissiez v&eacute;rifier et comprendre.</p>
+        </div>
+        <div class="hero-card">
+            <h2>Votre progression, pas une culpabilit&eacute;</h2>
+            <p>EcoTrack met en avant les actions &agrave; fort impact, sans vous submerger de chiffres.</p>
+        </div>
+        <div class="hero-card">
+            <h2>Donn&eacute;es sous contr&ocirc;le</h2>
+            <p>Vous restez propri&eacute;taire de vos donn&eacute;es. Export possible &agrave; tout moment.</p>
         </div>
     </section>
 </div>
