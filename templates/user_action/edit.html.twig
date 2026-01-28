@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier action{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier une action</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    <form method="post" class="form-grid">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('user_action_edit_' ~ action.id) }}">
+
+        <label for="eco_action">Action</label>
+        <select id="eco_action" name="eco_action" required>
+            {% for eco in eco_actions %}
+                <option value="{{ eco.id }}" {% if eco.id == action.ecoAction.id %}selected{% endif %}>{{ eco.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status">Statut</label>
+        <select id="status" name="status">
+            <option value="planned" {% if action.status == 'planned' %}selected{% endif %}>Plannee</option>
+            <option value="in_progress" {% if action.status == 'in_progress' %}selected{% endif %}>En cours</option>
+            <option value="done" {% if action.status == 'done' %}selected{% endif %}>Terminee</option>
+        </select>
+
+        <label for="started_at">Date de debut</label>
+        <input type="date" id="started_at" name="started_at" value="{{ action.startedAt ? action.startedAt|date('Y-m-d') : '' }}">
+
+        <label for="completed_at">Date de fin</label>
+        <input type="date" id="completed_at" name="completed_at" value="{{ action.completedAt ? action.completedAt|date('Y-m-d') : '' }}">
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3">{{ action.notes }}</textarea>
+
+        <button type="submit">Mettre a jour</button>
+    </form>
+</div>
+{% endblock %}

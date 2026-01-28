@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle action{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Ajouter une action</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    <form method="post" class="form-grid">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('user_action_new') }}">
+
+        <label for="eco_action">Action</label>
+        <select id="eco_action" name="eco_action" required>
+            {% for action in eco_actions %}
+                <option value="{{ action.id }}">{{ action.title }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status">Statut</label>
+        <select id="status" name="status">
+            <option value="planned">Plannee</option>
+            <option value="in_progress">En cours</option>
+            <option value="done">Terminee</option>
+        </select>
+
+        <label for="started_at">Date de debut</label>
+        <input type="date" id="started_at" name="started_at">
+
+        <label for="completed_at">Date de fin</label>
+        <input type="date" id="completed_at" name="completed_at">
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+</div>
+{% endblock %}

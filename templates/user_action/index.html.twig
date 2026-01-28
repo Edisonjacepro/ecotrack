@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes actions{% endblock %}
+
+{% block body %}
+<div class="container">
+    <header class="page-header">
+        <h1>Mes actions</h1>
+        <p>Suivi des actions ecologiques en cours ou terminees.</p>
+        <a class="button" href="{{ path('app_user_action_new') }}">Ajouter une action</a>
+    </header>
+
+    {% if actions is not empty %}
+        <div class="metrics">
+            {% for action in actions %}
+                <div class="metric">
+                    <h2>{{ action.ecoAction.title }}</h2>
+                    <p>{{ action.notes ?: action.ecoAction.description }}</p>
+                    <p class="helper">Statut : {{ action.status }}</p>
+                    <div class="hero-actions">
+                        <a class="button ghost" href="{{ path('app_user_action_show', { id: action.id }) }}">Voir</a>
+                        <a class="button" href="{{ path('app_user_action_edit', { id: action.id }) }}">Modifier</a>
+                        <form method="post" action="{{ path('app_user_action_delete', { id: action.id }) }}" onsubmit="return confirm('Supprimer cette action ?');">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('user_action_delete_' ~ action.id) }}">
+                            <button type="submit" class="button ghost">Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucune action enregistrée.</p>
+    {% endif %}
+</div>
+{% endblock %}

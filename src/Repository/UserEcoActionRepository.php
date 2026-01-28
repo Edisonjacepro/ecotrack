@@ -20,6 +20,19 @@ class UserEcoActionRepository extends ServiceEntityRepository
     /**
      * @return UserEcoAction[]
      */
+    public function findForUser(User $user): array
+    {
+        return $this->createQueryBuilder('userAction')
+            ->andWhere('userAction.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('userAction.startedAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return UserEcoAction[]
+     */
     public function findActiveForUser(User $user, int $limit = 10): array
     {
         return $this->createQueryBuilder('userAction')
