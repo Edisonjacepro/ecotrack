@@ -94,4 +94,17 @@ class CarbonRecordRepository extends ServiceEntityRepository
             $rows
         );
     }
+
+    /**
+     * @return CarbonRecord[]
+     */
+    public function findForUser(User $user): array
+    {
+        return $this->createQueryBuilder('record')
+            ->andWhere('record.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('record.recordedAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

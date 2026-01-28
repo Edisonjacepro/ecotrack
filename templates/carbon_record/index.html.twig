@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes enregistrements{% endblock %}
+
+{% block body %}
+<div class="container">
+    <header class="page-header">
+        <h1>Mes enregistrements</h1>
+        <p>Historique de vos emissions.</p>
+        <a class="button" href="{{ path('app_record_new') }}">Nouvel enregistrement</a>
+    </header>
+
+    {% if records is not empty %}
+        <div class="metrics">
+            {% for record in records %}
+                <div class="metric">
+                    <h2>{{ record.category|capitalize }}</h2>
+                    <p class="helper">{{ record.amountKg|number_format(2, '.', ' ') }} kg CO2e</p>
+                    <p class="helper">{{ record.recordedAt|date('Y-m-d') }}</p>
+                    <div class="hero-actions">
+                        <a class="button ghost" href="{{ path('app_record_show', { id: record.id }) }}">Voir</a>
+                        <a class="button" href="{{ path('app_record_edit', { id: record.id }) }}">Modifier</a>
+                        <form method="post" action="{{ path('app_record_delete', { id: record.id }) }}" onsubmit="return confirm('Supprimer cet enregistrement ?');">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('carbon_record_delete_' ~ record.id) }}">
+                            <button type="submit" class="button ghost">Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun enregistrement pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier enregistrement{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier un enregistrement</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    {% set data = record.sourceData ?? {} %}
+
+    <form method="post" class="form-grid" data-controller="carbon-form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('carbon_record_edit_' ~ record.id) }}">
+
+        <label for="recorded_at">Date</label>
+        <input type="date" id="recorded_at" name="recorded_at" value="{{ record.recordedAt ? record.recordedAt|date('Y-m-d') : '' }}">
+
+        <label for="category">Categorie</label>
+        <select id="category" name="category" required data-carbon-form-target="category" data-action="change->carbon-form#toggle">
+            <option value="transport" {% if record.category == 'transport' %}selected{% endif %}>Transport</option>
+            <option value="energy" {% if record.category == 'energy' %}selected{% endif %}>Energie</option>
+            <option value="food" {% if record.category == 'food' %}selected{% endif %}>Alimentation</option>
+            <option value="digital" {% if record.category == 'digital' %}selected{% endif %}>Numerique</option>
+        </select>
+
+        <div class="form-section" data-carbon-form-target="section" data-category="transport">
+            <div class="section-title">Transport</div>
+            <label for="distance_km">Distance (km)</label>
+            <input type="number" id="distance_km" name="distance_km" step="0.1" value="{{ data.distance_km ?? '' }}">
+
+            <label for="mode">Mode transport</label>
+            <select id="mode" name="mode">
+                {% set mode = data.mode ?? 'car' %}
+                <option value="car" {% if mode == 'car' %}selected{% endif %}>Voiture</option>
+                <option value="bus" {% if mode == 'bus' %}selected{% endif %}>Bus</option>
+                <option value="train" {% if mode == 'train' %}selected{% endif %}>Train</option>
+                <option value="plane" {% if mode == 'plane' %}selected{% endif %}>Avion</option>
+                <option value="bike" {% if mode == 'bike' %}selected{% endif %}>Velo</option>
+                <option value="walk" {% if mode == 'walk' %}selected{% endif %}>Marche</option>
+            </select>
+        </div>
+
+        <div class="form-section" data-carbon-form-target="section" data-category="energy">
+            <div class="section-title">Energie</div>
+            <label for="kwh">Energie (kWh)</label>
+            <input type="number" id="kwh" name="kwh" step="0.1" value="{{ data.kwh ?? '' }}">
+
+            <label for="energy_type">Type energie</label>
+            <select id="energy_type" name="energy_type">
+                {% set energyType = data.energy_type ?? 'electricity' %}
+                <option value="electricity" {% if energyType == 'electricity' %}selected{% endif %}>Electricite</option>
+                <option value="gas" {% if energyType == 'gas' %}selected{% endif %}>Gaz</option>
+            </select>
+        </div>
+
+        <div class="form-section" data-carbon-form-target="section" data-category="food">
+            <div class="section-title">Alimentation</div>
+            <label for="meals">Nombre de repas</label>
+            <input type="number" id="meals" name="meals" step="1" value="{{ data.meals ?? '' }}">
+
+            <label for="meal_type">Type de repas</label>
+            <select id="meal_type" name="meal_type">
+                {% set mealType = data.meal_type ?? 'meat' %}
+                <option value="meat" {% if mealType == 'meat' %}selected{% endif %}>Avec viande</option>
+                <option value="vegetarian" {% if mealType == 'vegetarian' %}selected{% endif %}>Vegetarien</option>
+                <option value="vegan" {% if mealType == 'vegan' %}selected{% endif %}>Vegan</option>
+            </select>
+        </div>
+
+        <div class="form-section" data-carbon-form-target="section" data-category="digital">
+            <div class="section-title">Numerique</div>
+            <label for="hours">Duree (heures)</label>
+            <input type="number" id="hours" name="hours" step="0.1" value="{{ data.hours ?? '' }}">
+
+            <label for="activity">Activite numerique</label>
+            <select id="activity" name="activity">
+                {% set activity = data.activity ?? 'streaming_hour' %}
+                <option value="streaming_hour" {% if activity == 'streaming_hour' %}selected{% endif %}>Streaming</option>
+                <option value="browsing_hour" {% if activity == 'browsing_hour' %}selected{% endif %}>Navigation web</option>
+            </select>
+        </div>
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3">{{ record.notes }}</textarea>
+
+        <button type="submit">Mettre a jour</button>
+    </form>
+</div>
+{% endblock %}
